@@ -374,14 +374,14 @@ WHERE CLIENTE.nombre LIKE '%Regan Greene%';
 -- Ejercicio 5. Mostrar el registro de consultas, incluir el nombre del cliente, la mascota atendida 
 -- y el veterinario que realizó la consulta. 
 
-	SELECT C.id, C.fecha, C.precio, CL.nombre AS 'cliente', M.nombre AS 'mascota atendida',  V.nombre AS 'veterinario'
-	FROM CONSULTA C
-	INNER JOIN MASCOTA M
-	ON M.id = C.id_mascota
-	INNER JOIN CLIENTE CL
-	ON CL.id = M.id_cliente
-	INNER JOIN VETERINARIO V
-	ON V.id = C.id_veterinario;
+SELECT C.id, C.fecha, C.precio, CL.nombre AS 'cliente', M.nombre AS 'mascota atendida',  V.nombre AS 'veterinario'
+FROM CONSULTA C
+INNER JOIN MASCOTA M
+ON M.id = C.id_mascota
+INNER JOIN CLIENTE CL
+ON CL.id = M.id_cliente
+INNER JOIN VETERINARIO V
+ON V.id = C.id_veterinario;
 
 -- Ejercicio 6. Mostrar el registro de consultas realizadas a la mascota llamada "Malachi" del cliente "Avye Wiley". 
 
@@ -397,15 +397,15 @@ WHERE MASCOTA.nombre LIKE '%Malachi%';
 
 -- Ejercicio 7. ¿Qué medicina se le ha recetado a "Malachi" en las consultas? 
 
-	SELECT M.id AS 'id mascota', M.nombre, C.id AS 'id consulta', MD.nombre AS 'Medicamento'
-	FROM MEDICAMENTO MD
-	INNER JOIN RECETA R
-	ON R.id_medicamento = MD.id
-	INNER JOIN CONSULTA C
-	ON C.id = R.id_consulta
-	INNER JOIN MASCOTA M
-	ON M.id = C.id_mascota
-	WHERE M.nombre LIKE '%Malachi%';
+SELECT M.id AS 'id mascota', M.nombre, C.id AS 'id consulta', MD.nombre AS 'Medicamento'
+FROM MEDICAMENTO MD
+INNER JOIN RECETA R
+ON R.id_medicamento = MD.id
+INNER JOIN CONSULTA C
+ON C.id = R.id_consulta
+INNER JOIN MASCOTA M
+ON M.id = C.id_mascota
+WHERE M.nombre LIKE '%Malachi%';
 
 -- Ejercicio 8. Muestre la lista de consultas de revisión, es decir, que no se ha recetado ningún medicamento. 
 
@@ -418,12 +418,12 @@ AND RECETA.id_consulta IS NULL;
 -- Ejercicio 9. Muestre la lista de consultas de revisión, es decir, que no se ha recetado ningún medicamento. 
 -- Incluya el nombre de la mascota atendida y el veterinario encargado de la revisión. 
 
-	SELECT C.id, M.nombre AS 'Mascota atendida', V.nombre AS 'Veterinario encargado', C.fecha, C.precio FROM CONSULTA C
-	LEFT JOIN RECETA R
-	ON C.id = R.id_consulta
-	INNER JOIN MASCOTA M
-	ON C.id_mascota = M.id
-	INNER JOIN VETERINARIO V
-	ON V.id = C.id_veterinario
-	WHERE R.id_medicamento IS NULL
-	AND R.id_consulta IS NULL;
+SELECT C.id, M.nombre AS 'Mascota atendida', V.nombre AS 'Veterinario encargado', C.fecha, C.precio FROM CONSULTA C
+LEFT JOIN RECETA R
+ON C.id = R.id_consulta
+INNER JOIN MASCOTA M
+ON C.id_mascota = M.id
+INNER JOIN VETERINARIO V
+ON V.id = C.id_veterinario
+WHERE R.id_medicamento IS NULL
+AND R.id_consulta IS NULL;
