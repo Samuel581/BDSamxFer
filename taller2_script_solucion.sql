@@ -384,6 +384,13 @@ WHERE CLIENTE.nombre LIKE '%Regan Greene%';
 
 -- Ejercicio 6. Mostrar el registro de consultas realizadas a la mascota llamada "Malachi" del cliente "Avye Wiley". 
 
+SELECT CONSULTA.id,fecha,precio, MASCOTA.nombre as 'Mascota', VETERINARIO.nombre AS 'Veterinario', CLIENTE.nombre AS 'cliente'
+FROM CONSULTA
+INNER JOIN MASCOTA ON MASCOTA.id=CONSULTA.id_mascota
+INNER JOIN VETERINARIO ON VETERINARIO.id=CONSULTA.id_veterinario
+INNER JOIN CLIENTE ON CLIENTE.id=MASCOTA.id_cliente
+WHERE MASCOTA.nombre LIKE 'Malachi';
+
 -- Ejercicio 7. ¿Qué medicina se le ha recetado a "Malachi" en las consultas? 
 
 -- Ejercicio 8. Muestre la lista de consultas de revisión, es decir, que no se ha recetado ningún medicamento. 
