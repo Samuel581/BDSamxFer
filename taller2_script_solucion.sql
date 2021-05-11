@@ -351,8 +351,8 @@ FOREIGN KEY(id_raza) REFERENCES RAZA(id);
 
 -- Ejercicio 2. Mostrar todas las columnas de la tabla MASCOTA
 
-Select id as 'id mascota', nombre as 'nombre mascota', id_cliente as 'fk cliente', id_raza as 'fk_raza', fecha_nacimiento as 'fecha nacimiento'
-from MASCOTA;
+SELECT id AS 'id mascota', nombre AS 'nombre mascota', id_cliente AS 'fk cliente', id_raza AS 'fk_raza', fecha_nacimiento AS 'fecha nacimiento'
+FROM MASCOTA;
 
 -- Ejercicio 3. Mostrar la lista de mascotas con su fecha de nacimiento, el nombre del cliente y la raza. 
 
@@ -367,7 +367,7 @@ AND M.id_raza = R.id;
 SELECT MASCOTA.NOMBRE, CLIENTE.nombre
 FROM MASCOTA
 INNER JOIN CLIENTE ON MASCOTA.id_cliente=CLIENTE.id
-WHERE CLIENTE.nombre LIKE 'Regan Greene';
+WHERE CLIENTE.nombre LIKE '%Regan Greene%';
 
 
 -- Ejercicio 5. Mostrar el registro de consultas, incluir el nombre del cliente, la mascota atendida 
