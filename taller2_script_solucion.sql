@@ -356,6 +356,10 @@ from MASCOTA;
 
 -- Ejercicio 3. Mostrar la lista de mascotas con su fecha de nacimiento, el nombre del cliente y la raza. 
 
+SELECT M.nombre AS nombre_mascota, R.raza AS raza_mascota, M.fecha_nacimiento, C.nombre AS nombre_cliente
+FROM MASCOTA M, CLIENTE C, RAZA R
+WHERE M.id_cliente = C.id AND M.id_raza = R.id;
+
 -- Ejercicio 4. Mostrar la lista de mascotas del cliente llamado "Regan Greene". 
 
 -- Ejercicio 5. Mostrar el registro de consultas, incluir el nombre del cliente, la mascota atendida 
