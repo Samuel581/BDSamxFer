@@ -358,7 +358,8 @@ from MASCOTA;
 
 SELECT M.nombre AS nombre_mascota, R.raza AS raza_mascota, M.fecha_nacimiento, C.nombre AS nombre_cliente
 FROM MASCOTA M, CLIENTE C, RAZA R
-WHERE M.id_cliente = C.id AND M.id_raza = R.id;
+WHERE M.id_cliente = C.id 
+AND M.id_raza = R.id;
 
 -- Ejercicio 4. Mostrar la lista de mascotas del cliente llamado "Regan Greene". 
 
