@@ -373,6 +373,15 @@ WHERE CLIENTE.nombre LIKE '%Regan Greene%';
 -- Ejercicio 5. Mostrar el registro de consultas, incluir el nombre del cliente, la mascota atendida 
 -- y el veterinario que realizó la consulta. 
 
+	SELECT C.id, C.fecha, C.precio, CL.nombre AS 'cliente', M.nombre AS 'mascota atendida',  V.nombre AS 'veterinario'
+	FROM CONSULTA C
+	INNER JOIN MASCOTA M
+	ON M.id = C.id_mascota
+	INNER JOIN CLIENTE CL
+	ON CL.id = M.id_cliente
+	INNER JOIN VETERINARIO V
+	ON V.id = C.id_veterinario;
+
 -- Ejercicio 6. Mostrar el registro de consultas realizadas a la mascota llamada "Malachi" del cliente "Avye Wiley". 
 
 -- Ejercicio 7. ¿Qué medicina se le ha recetado a "Malachi" en las consultas? 
