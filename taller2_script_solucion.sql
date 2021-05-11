@@ -393,6 +393,16 @@ WHERE MASCOTA.nombre LIKE 'Malachi';
 
 -- Ejercicio 7. ¿Qué medicina se le ha recetado a "Malachi" en las consultas? 
 
+	SELECT M.id AS 'id mascota', M.nombre, C.id AS 'id consulta', MD.nombre AS 'Medicamento'
+	FROM MEDICAMENTO MD
+	INNER JOIN RECETA R
+	ON R.id_medicamento = MD.id
+	INNER JOIN CONSULTA C
+	ON C.id = R.id_consulta
+	INNER JOIN MASCOTA M
+	ON M.id = C.id_mascota
+	WHERE M.nombre LIKE '%Malachi%';
+
 -- Ejercicio 8. Muestre la lista de consultas de revisión, es decir, que no se ha recetado ningún medicamento. 
 
 -- Ejercicio 9. Muestre la lista de consultas de revisión, es decir, que no se ha recetado ningún medicamento. 
