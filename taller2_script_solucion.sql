@@ -334,6 +334,12 @@ INSERT INTO RECETA VALUES (4,33);
 
 --Ejercicio 1. Abrir el archivo. Notará que NO se encuentra la definición de llaves foráneas, 
 --por lo que se deben modificar todas las tablas necesarias para que el diagrama quede como en la figura 1. 
+
+ALTER TABLE RECETA ADD FOREIGN KEY (id_medicamento) REFERENCES MEDICAMENTO(id);
+ALTER TABLE RECETA ADD FOREIGN KEY (id_consulta) REFERENCES CONSULTA(id);
+ALTER TABLE CONSULTA ADD FOREIGN KEY (id_mascota) REFERENCES MASCOTA(id);
+ALTER TABLE CONSULTA ADD FOREIGN KEY (id_veterinario) REFERENCES VETERINARIO(id);
+
 --Crear el diagrama en SQL Server para asegurar que se ha llegado a la misma solución de la figura 1.
 
 -- Ejercicio 2. Mostrar todas las columnas de la tabla MASCOTA
