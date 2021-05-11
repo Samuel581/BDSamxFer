@@ -405,5 +405,10 @@ WHERE MASCOTA.nombre LIKE '%Malachi%';
 
 -- Ejercicio 8. Muestre la lista de consultas de revisión, es decir, que no se ha recetado ningún medicamento. 
 
+SELECT CONSULTA.id,fecha,precio FROM CONSULTA
+LEFT JOIN RECETA 
+ON CONSULTA.id = RECETA.id_consulta
+WHERE RECETA.id_medicamento IS NULL;
+
 -- Ejercicio 9. Muestre la lista de consultas de revisión, es decir, que no se ha recetado ningún medicamento. 
 -- Incluya el nombre de la mascota atendida y el veterinario encargado de la revisión. 
