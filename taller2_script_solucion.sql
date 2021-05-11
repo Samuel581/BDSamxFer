@@ -362,6 +362,13 @@ WHERE M.id_cliente = C.id AND M.id_raza = R.id;
 
 -- Ejercicio 4. Mostrar la lista de mascotas del cliente llamado "Regan Greene". 
 
+
+SELECT MASCOTA.NOMBRE, CLIENTE.nombre
+FROM MASCOTA
+INNER JOIN CLIENTE ON MASCOTA.id_cliente=CLIENTE.id
+WHERE CLIENTE.nombre LIKE 'Regan Greene';
+
+
 -- Ejercicio 5. Mostrar el registro de consultas, incluir el nombre del cliente, la mascota atendida 
 -- y el veterinario que realizó la consulta. 
 
