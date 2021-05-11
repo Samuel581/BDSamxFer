@@ -1,0 +1,2 @@
+Cliente, Mascota, Raza -> Samuel
+Receta y demas -> Fer
