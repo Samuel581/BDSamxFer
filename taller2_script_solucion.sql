@@ -366,7 +366,8 @@ AND M.id_raza = R.id;
 
 SELECT MASCOTA.NOMBRE, CLIENTE.nombre
 FROM MASCOTA
-INNER JOIN CLIENTE ON MASCOTA.id_cliente=CLIENTE.id
+INNER JOIN CLIENTE 
+ON MASCOTA.id_cliente = CLIENTE.id
 WHERE CLIENTE.nombre LIKE '%Regan Greene%';
 
 
@@ -386,9 +387,12 @@ WHERE CLIENTE.nombre LIKE '%Regan Greene%';
 
 SELECT CONSULTA.id,fecha,precio, MASCOTA.nombre as 'Mascota', VETERINARIO.nombre AS 'Veterinario', CLIENTE.nombre AS 'cliente'
 FROM CONSULTA
-INNER JOIN MASCOTA ON MASCOTA.id=CONSULTA.id_mascota
-INNER JOIN VETERINARIO ON VETERINARIO.id=CONSULTA.id_veterinario
-INNER JOIN CLIENTE ON CLIENTE.id=MASCOTA.id_cliente
+INNER JOIN MASCOTA 
+ON MASCOTA.id = CONSULTA.id_mascota
+INNER JOIN VETERINARIO 
+ON VETERINARIO.id = CONSULTA.id_veterinario
+INNER JOIN CLIENTE 
+ON CLIENTE.id = MASCOTA.id_cliente
 WHERE MASCOTA.nombre LIKE '%Malachi%';
 
 -- Ejercicio 7. ¿Qué medicina se le ha recetado a "Malachi" en las consultas? 
@@ -405,10 +409,21 @@ WHERE MASCOTA.nombre LIKE '%Malachi%';
 
 -- Ejercicio 8. Muestre la lista de consultas de revisión, es decir, que no se ha recetado ningún medicamento. 
 
-SELECT CONSULTA.id,fecha,precio FROM CONSULTA
+SELECT CONSULTA.id, fecha, precio FROM CONSULTA
 LEFT JOIN RECETA 
 ON CONSULTA.id = RECETA.id_consulta
-WHERE RECETA.id_medicamento IS NULL;
+WHERE RECETA.id_medicamento IS NULL
+AND RECETA.id_consulta IS NULL;
 
 -- Ejercicio 9. Muestre la lista de consultas de revisión, es decir, que no se ha recetado ningún medicamento. 
 -- Incluya el nombre de la mascota atendida y el veterinario encargado de la revisión. 
+
+	SELECT C.id, M.nombre AS 'Mascota atendida', V.nombre AS 'Veterinario encargado', C.fecha, C.precio FROM CONSULTA C
+	LEFT JOIN RECETA R
+	ON C.id = R.id_consulta
+	INNER JOIN MASCOTA M
+	ON C.id_mascota = M.id
+	INNER JOIN VETERINARIO V
+	ON V.id = C.id_veterinario
+	WHERE R.id_medicamento IS NULL
+	AND R.id_consulta IS NULL;
