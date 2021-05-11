@@ -351,6 +351,9 @@ FOREIGN KEY(id_raza) REFERENCES RAZA(id);
 
 -- Ejercicio 2. Mostrar todas las columnas de la tabla MASCOTA
 
+Select id as 'id mascota', nombre as 'nombre mascota', id_cliente as 'fk cliente', id_raza as 'fk_raza', fecha_nacimiento as 'fecha nacimiento'
+from MASCOTA;
+
 -- Ejercicio 3. Mostrar la lista de mascotas con su fecha de nacimiento, el nombre del cliente y la raza. 
 
 -- Ejercicio 4. Mostrar la lista de mascotas del cliente llamado "Regan Greene". 
