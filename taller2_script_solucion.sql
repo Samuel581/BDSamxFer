@@ -389,7 +389,7 @@ FROM CONSULTA
 INNER JOIN MASCOTA ON MASCOTA.id=CONSULTA.id_mascota
 INNER JOIN VETERINARIO ON VETERINARIO.id=CONSULTA.id_veterinario
 INNER JOIN CLIENTE ON CLIENTE.id=MASCOTA.id_cliente
-WHERE MASCOTA.nombre LIKE 'Malachi';
+WHERE MASCOTA.nombre LIKE '%Malachi%';
 
 -- Ejercicio 7. ¿Qué medicina se le ha recetado a "Malachi" en las consultas? 
 
