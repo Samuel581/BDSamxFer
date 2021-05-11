@@ -6,16 +6,16 @@
 
 -- IMPORTANTE: 
 -- ANTES DE INICIAR: se recomiendo hacer el ejercicio 1 antes de insertar los datos
--- El orden de eventos debería ser:
+-- El orden de eventos deberÃ­a ser:
 --		1. Crear base de datos y configurar el lenguaje
 --		2. Crear tablas
 --		3. Hacer ejercicio 1
 -- 		4. Insertar datos
 --		5. Realizar el resto de ejercicios
--- Se debe llenar este archivo con la solución del taller y subirlo en Moodle
--- Rellenar esta área con la sección, carnet y nombre de cada integrante
--- Integrante 1: (Ingresar sección, carnet y nombre)
--- Integrante 2: (Ingresar sección, carnet y nombre)
+-- Se debe llenar este archivo con la soluciÃ³n del taller y subirlo en Moodle
+-- Rellenar esta Ã¡rea con la secciÃ³n, carnet y nombre de cada integrante
+-- Integrante 1: 00078720 Fernando JosÃ© MelÃ©ndez Orellana
+-- Integrante 2: 00023020 Samuel Adonay Ortiz Carballo
 --****************************************************
 
 
@@ -82,7 +82,7 @@ INSERT INTO raza VALUES('Terrier');
 INSERT INTO RAZA VALUES('Bulldog');
 INSERT INTO RAZA VALUES('Chihuahua');
 INSERT INTO RAZA VALUES('Husky');
-INSERT INTO RAZA VALUES('Pastor Alemán');
+INSERT INTO RAZA VALUES('Pastor AlemÃ¡n');
 INSERT INTO RAZA VALUES('Mestizo');
 
 -- Banco de datos VETERINARIO
@@ -332,7 +332,7 @@ INSERT INTO RECETA VALUES (7,21);
 INSERT INTO RECETA VALUES (10,22);
 INSERT INTO RECETA VALUES (4,33);
 
---Ejercicio 1. Abrir el archivo. Notará que NO se encuentra la definición de llaves foráneas, 
+--Ejercicio 1. Abrir el archivo. NotarÃ¡ que NO se encuentra la definiciÃ³n de llaves forÃ¡neas, 
 --por lo que se deben modificar todas las tablas necesarias para que el diagrama quede como en la figura 1. 
 
 ALTER TABLE RECETA ADD FOREIGN KEY (id_medicamento) REFERENCES MEDICAMENTO(id);
@@ -348,7 +348,7 @@ ALTER TABLE MASCOTA
 ADD CONSTRAINT fk_mascota_raza
 FOREIGN KEY(id_raza) REFERENCES RAZA(id);
 
---Crear el diagrama en SQL Server para asegurar que se ha llegado a la misma solución de la figura 1.
+--Crear el diagrama en SQL Server para asegurar que se ha llegado a la misma soluciÃ³n de la figura 1.
 
 -- Ejercicio 2. Mostrar todas las columnas de la tabla MASCOTA
 
@@ -373,7 +373,7 @@ WHERE CLIENTE.nombre LIKE '%Regan Greene%';
 
 
 -- Ejercicio 5. Mostrar el registro de consultas, incluir el nombre del cliente, la mascota atendida 
--- y el veterinario que realizó la consulta. 
+-- y el veterinario que realizÃ³ la consulta. 
 
 SELECT C.id, C.fecha, C.precio, CL.nombre AS 'cliente', M.nombre AS 'mascota atendida',  V.nombre AS 'veterinario'
 FROM CONSULTA C
@@ -396,7 +396,7 @@ INNER JOIN CLIENTE
 ON CLIENTE.id = MASCOTA.id_cliente
 WHERE MASCOTA.nombre LIKE '%Malachi%';
 
--- Ejercicio 7. ¿Qué medicina se le ha recetado a "Malachi" en las consultas? 
+-- Ejercicio 7. Â¿QuÃ© medicina se le ha recetado a "Malachi" en las consultas? 
 
 SELECT M.id AS 'id mascota', M.nombre, C.id AS 'id consulta', MD.nombre AS 'Medicamento'
 FROM MEDICAMENTO MD
@@ -408,7 +408,7 @@ INNER JOIN MASCOTA M
 ON M.id = C.id_mascota
 WHERE M.nombre LIKE '%Malachi%';
 
--- Ejercicio 8. Muestre la lista de consultas de revisión, es decir, que no se ha recetado ningún medicamento. 
+-- Ejercicio 8. Muestre la lista de consultas de revisiÃ³n, es decir, que no se ha recetado ningÃºn medicamento. 
 
 SELECT CONSULTA.id, fecha, precio FROM CONSULTA
 LEFT JOIN RECETA 
@@ -416,8 +416,8 @@ ON CONSULTA.id = RECETA.id_consulta
 WHERE RECETA.id_medicamento IS NULL
 AND RECETA.id_consulta IS NULL;
 
--- Ejercicio 9. Muestre la lista de consultas de revisión, es decir, que no se ha recetado ningún medicamento. 
--- Incluya el nombre de la mascota atendida y el veterinario encargado de la revisión. 
+-- Ejercicio 9. Muestre la lista de consultas de revisiÃ³n, es decir, que no se ha recetado ningÃºn medicamento. 
+-- Incluya el nombre de la mascota atendida y el veterinario encargado de la revisiÃ³n. 
 
 SELECT C.id, M.nombre AS 'Mascota atendida', V.nombre AS 'Veterinario encargado', C.fecha, C.precio FROM CONSULTA C
 LEFT JOIN RECETA R
