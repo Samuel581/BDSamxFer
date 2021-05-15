@@ -352,12 +352,12 @@ FOREIGN KEY(id_raza) REFERENCES RAZA(id);
 
 -- Ejercicio 2. Mostrar todas las columnas de la tabla MASCOTA
 
-SELECT id AS 'id mascota', nombre AS 'nombre mascota', id_cliente AS 'fk cliente', id_raza AS 'fk_raza', fecha_nacimiento AS 'fecha nacimiento'
+SELECT id AS 'id mascota', nombre AS 'nombre mascota', id_cliente AS 'fk cliente', id_raza AS 'fk raza', fecha_nacimiento AS 'fecha nacimiento'
 FROM MASCOTA;
 
 -- Ejercicio 3. Mostrar la lista de mascotas con su fecha de nacimiento, el nombre del cliente y la raza. 
 
-SELECT M.nombre AS nombre_mascota, R.raza AS raza_mascota, M.fecha_nacimiento, C.nombre AS nombre_cliente
+SELECT M.id,M.nombre AS 'nombre mascota', R.raza AS 'raza', M.fecha_nacimiento AS 'fecha nacimiento', C.nombre AS 'nombre del cliente'
 FROM MASCOTA M, CLIENTE C, RAZA R
 WHERE M.id_cliente = C.id 
 AND M.id_raza = R.id;
@@ -365,7 +365,7 @@ AND M.id_raza = R.id;
 -- Ejercicio 4. Mostrar la lista de mascotas del cliente llamado "Regan Greene". 
 
 
-SELECT MASCOTA.NOMBRE, CLIENTE.nombre
+SELECT MASCOTA.nombre AS 'nombre de la mascota', MASCOTA.fecha_nacimiento AS 'fecha de nacimiento', CLIENTE.nombre AS 'nombre del cliente'
 FROM MASCOTA
 INNER JOIN CLIENTE 
 ON MASCOTA.id_cliente = CLIENTE.id
@@ -386,19 +386,19 @@ ON V.id = C.id_veterinario;
 
 -- Ejercicio 6. Mostrar el registro de consultas realizadas a la mascota llamada "Malachi" del cliente "Avye Wiley". 
 
-SELECT CONSULTA.id,fecha,precio, MASCOTA.nombre as 'Mascota', VETERINARIO.nombre AS 'Veterinario', CLIENTE.nombre AS 'cliente'
-FROM CONSULTA
-INNER JOIN MASCOTA 
-ON MASCOTA.id = CONSULTA.id_mascota
-INNER JOIN VETERINARIO 
-ON VETERINARIO.id = CONSULTA.id_veterinario
-INNER JOIN CLIENTE 
-ON CLIENTE.id = MASCOTA.id_cliente
-WHERE MASCOTA.nombre LIKE '%Malachi%';
+SELECT C.id, C.fecha, C.precio, CL.nombre AS 'cliente', M.nombre AS 'mascota atendida', V.nombre AS 'veterinario'
+FROM CONSULTA C
+INNER JOIN MASCOTA M
+ON M.id = C.id_mascota
+INNER JOIN VETERINARIO V 
+ON V.id = C.id_veterinario
+INNER JOIN CLIENTE CL
+ON CL.id = M.id_cliente
+WHERE M.nombre LIKE '%Malachi%';
 
 -- Ejercicio 7. ¿Qué medicina se le ha recetado a "Malachi" en las consultas? 
 
-SELECT M.id AS 'id mascota', M.nombre, C.id AS 'id consulta', MD.nombre AS 'Medicamento'
+SELECT M.id AS 'id mascota', M.nombre, C.id AS 'id consulta', MD.nombre AS 'medicamento'
 FROM MEDICAMENTO MD
 INNER JOIN RECETA R
 ON R.id_medicamento = MD.id
@@ -410,7 +410,8 @@ WHERE M.nombre LIKE '%Malachi%';
 
 -- Ejercicio 8. Muestre la lista de consultas de revisión, es decir, que no se ha recetado ningún medicamento. 
 
-SELECT CONSULTA.id, fecha, precio FROM CONSULTA
+SELECT CONSULTA.id, fecha, precio 
+FROM CONSULTA
 LEFT JOIN RECETA 
 ON CONSULTA.id = RECETA.id_consulta
 WHERE RECETA.id_medicamento IS NULL
@@ -419,7 +420,8 @@ AND RECETA.id_consulta IS NULL;
 -- Ejercicio 9. Muestre la lista de consultas de revisión, es decir, que no se ha recetado ningún medicamento. 
 -- Incluya el nombre de la mascota atendida y el veterinario encargado de la revisión. 
 
-SELECT C.id, M.nombre AS 'Mascota atendida', V.nombre AS 'Veterinario encargado', C.fecha, C.precio FROM CONSULTA C
+SELECT C.id, M.nombre AS 'Mascota atendida', V.nombre AS 'Veterinario encargado', C.fecha, C.precio 
+FROM CONSULTA C
 LEFT JOIN RECETA R
 ON C.id = R.id_consulta
 INNER JOIN MASCOTA M
